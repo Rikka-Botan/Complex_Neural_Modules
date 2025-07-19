@@ -74,7 +74,7 @@ And most of all, thank you for your interest in this repository.
 
 I would be happy to include a citation at the end, but it is not required.
 
-Feel free to use this model.
+Feel free to use modules.
 
 
 ## Contact Us
