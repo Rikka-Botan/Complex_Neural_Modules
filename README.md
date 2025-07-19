@@ -47,7 +47,7 @@ git clone https://github.com/Rikka-Botan/Complex_Neural_Modules.git
 - Model create
 
 ```python
-from module.modeling import ComplexLinear, ComplexConv2d, ComplexAttention
+from modules.modeling import ComplexLinear, ComplexConv2d, ComplexAttention
 
 cl = ComplexLinear(
   768, 768
