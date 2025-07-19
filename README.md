@@ -1,71 +1,29 @@
-# Complex Neural Modules
+# Complex Neural Modules: A Type-Agnostic Module Set for Complex-Valued Machine Learning
 
-Pytorch implementation
-
-
+Original Pytorch implementation for Complex Systems.
 
 ## About
 
-IMoE dynamically selects neurons.
+This module set provides a general-purpose, type-agnostic framework for machine learning in the complex domain. 
 
-This implementation replicates the neurons which is dynamically changing synapses and enables efficient and diverse inference.
+This type-agnostic design makes the framework particularly suitable for large language models (LLMs) operating under quantization constraints or specialized hardware environments.
 
+Designed to harness the unique structure of complex numbers—such as phase coherence and analytic behavior—it allows researchers and developers to easily extend models into the complex space without sacrificing flexibility or performance.
 
 ## Key features
 
-1. Structure that dynamically changes shape depending on input
-
-2. The number of reference memory varies depending on the confidence level of the model
-
-3. Minimizing the number of accesses to memory for faster processing on the GPU
-
-4. Architecture based on random graph theory
-
-## Appendix A: IMoE theory
-
-Realization of the neural network based on random graph theory.
-The growth process of brain neural circuits can be explained by the theory
-that integrates Erdős-Rényi-Gilbert model
-and fitness model (Bianconi-Barabási model).
-
-During childhood, the brain neural circuits and synapses increase rapidly
-and then synapses are pruned as the brain grows.
-This growth process is equivalent to applying Erdős-Rényi-Gilbert model
-then fitness model (Bianconi-Barabási model).
-
-### Step 1: Erdős-Rényi-Gilbert model like growth process
-
-Individual synapses are not affected by the state of other synapses
-and are probabilistically formed.
-This phenomenon is represented by Erdős-Rényi-Gilbert model
-and is achieved in the algorithm by a parallel definition of the modules.
-
-### Step 2: fitness model (Bianconi-Barabási model) like routing
-
-Individual neurons have link coefficients
-which affect connected synapses architecture.
-These link coefficients change dynamically in response to the environment.
-These link coefficients are a random distribution in childhood,
-but converge to a constant distribution as they grow older.
-This mechanism is realized by a dynamic, multi-level branching process
-using softmax functions and linear projections.
+The module set includes complex-valued implementations of commonly used components such as Linear, Conv2d, and Attention, enabling end-to-end training in the complex domain. 
 
 ***
 ### Formulation
 
 ```math
 \displaylines{
-W_g \in \mathbb{R^{M \times N}}, \; W_o \in \mathbb{R^{N \times L}}, \; x \in \mathbb{R^N} \\
-E = \left( f_1, f_2, \cdots f_G \right) \\
-\forall f_i (f_i \in \mathbb{R^{L \times N}}) \\
-s: \; gate \; thres \\
-Softmax(x) = \frac{e^{x_k}}{\sum_{k=0}^K e^{x_k}} \\
-G(x) = Softmax(W_g x) \\
-\xi_k(x), \; \Gamma_k(x) = TopP(G(x), s) \\
-y = W_o \sum_{i \in \Gamma_k(x)}\xi_i(x)f_i(x)
+x \in \mathbb{C^N}
+W \in \mathbb{C^{M \times N}} \\
+y = Wx
 }
 ```
-
 
 ## Implementation and License
 
@@ -80,31 +38,26 @@ Commercial use permitted
 - Clone the repository
 
 ```bash
-git clone https://github.com/Rikka-Botan/IMoE.git
+git clone https://github.com/Rikka-Botan/Complex_Neural_Modules.git
 ```
 
 - Model create
 
 ```python
-"""
-Args:
-input_dim: int
-inter_dim: int
-gate_num: int
-top_p: float (default: 0.3)
-temperature: float (default: 1.0)
-noise: float (default: 0.1) - gating noise parameter when training
-bias: bool (default: False)
-device: Any | None (default: None)
-dtype: Any | None (default: None)
-"""
+from module.modeling import ComplexLinear, ComplexConv2d, ComplexAttention
 
-from model.IMoE_modeling import BotanIMoE
-
-model = BotanIMoE(
-  768, 768, 16
+cl = ComplexLinear(
+  768, 768
 )
-output = model(hidden_states)
+cc = ComplexConv2d(
+  5, 5
+)
+ca = ComplexAttention(
+  768, 6
+)
+cl_output = cl(hidden_states)
+cc_output = cc(hidden_states)
+ca_output = ca(hidden_states)
 ```
 
 ## Acknowledgements
