@@ -27,7 +27,7 @@ y = Wx
 
 ## Implementation and License
 
-This repository is official pure pytorch implementation.
+This repository is pure pytorch implementation.
 
 Licensed under ["MIT License"](https://mit-license.org/).
 
