@@ -9,6 +9,7 @@ from typing import Any
 from einops import rearrange
 import torch.nn.functional as F
 
+
 def BotanCC(
     ReIm: torch.Tensor
 ) -> torch.Tensor:
@@ -26,6 +27,7 @@ def BotanCC(
     ReIm_clone[..., 1, :] = -ReIm_clone[..., 1, :]
     return ReIm_clone
 
+
 def BotanCM(
     x: torch.Tensor,
     y: torch.Tensor
@@ -41,6 +43,41 @@ def BotanCM(
     ac_bd = x * BotanCC(y)
     adbc = x * y[..., ::1, :]
     return torch.stack([ac_bd.sum(-2), adbc.sum(-2)], dim=-2)
+
+
+def BotanCReLU(
+    x: torch.Tensor
+) -> torch.Tensor:
+    x[..., 0, :] = F.relu(x[..., 0, :])
+    return x
+
+
+def BotanCSigmoid(
+    x: torch.Tensor
+) -> torch.Tensor:
+    x[..., 0, :] = F.sigmoid(x[..., 0, :])
+    return x
+
+
+def BotanCSiLU(
+    x: torch.Tensor
+) -> torch.Tensor:
+    x[..., 0, :] = F.silu(x[..., 0, :])
+    return x
+
+
+def BotanCGELU(
+    x: torch.Tensor
+) -> torch.Tensor:
+    x[..., 0, :] = F.gelu(x[..., 0, :])
+    return x
+
+
+def BotanCTanh(
+    x: torch.Tensor
+) -> torch.Tensor:
+    x[..., 0, :] = F.tanh(x[..., 0, :])
+    return x
 
 
 class ComplexLinear(nn.Module):
