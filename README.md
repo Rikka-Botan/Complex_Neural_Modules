@@ -19,7 +19,7 @@ The module set includes complex-valued implementations of commonly used componen
 
 ```math
 \displaylines{
-x \in \mathbb{C^N}
+x \in \mathbb{C^N} \\
 W \in \mathbb{C^{M \times N}} \\
 y = Wx
 }
