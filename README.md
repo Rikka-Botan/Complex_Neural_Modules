@@ -1,5 +1,5 @@
 
-<img width="3154" height="1066" alt="complex_neural_modules" src="https://github.com/user-attachments/assets/b416cb47-0a26-47b8-b006-28027ac441fc" />
+<img width="3154" height="1066" alt="complex_neural_modules" src="https://github.com/user-attachments/assets/f0aeacca-ce4e-4ac0-81e5-a0add417349c" />
 
 # Complex Neural Modules: A Type-Agnostic Module Set for Complex-Valued Machine Learning
 
