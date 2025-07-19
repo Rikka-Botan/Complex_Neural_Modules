@@ -1,3 +1,6 @@
+
+<img width="3154" height="1066" alt="complex_neural_modules" src="https://github.com/user-attachments/assets/b416cb47-0a26-47b8-b006-28027ac441fc" />
+
 # Complex Neural Modules: A Type-Agnostic Module Set for Complex-Valued Machine Learning
 
 Original Pytorch implementation for Complex Systems.
